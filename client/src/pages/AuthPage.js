@@ -41,14 +41,18 @@ export const AuthPage = () => {
 
     const loginHendler = async () => {
         try {
-            // console.log(form)
-            // const data = await request('/api/auth/login', 'POST', {...form})
-            dispatch(fetchLogin())
-            // message(data.message)
-            // console.log(data)
-            // auth.login(data.token, data.userId)
+            console.log(form)
+            const data = await request('/api/auth/login', 'POST', {...form})
+            // dispatch(fetchLogin())
+            message(data.message)
+            console.log(data)
+            auth.login(data.token, data.userId)
             
         } catch(e){}
+    }
+
+    const login = () => {
+        dispatch(fetchLogin('/api/auth/login', 'POST', form, {}))
     }
 
     return (
@@ -91,7 +95,8 @@ export const AuthPage = () => {
                             className="btn yellow darken-4" 
                             style={{marginRight:10}} 
                             disabled={loading}
-                            onClick={loginHendler}
+                            onClick={login}
+                            // onClick={() => dispatch(fetchLogin())}
                         >
                             log in
                         </button>

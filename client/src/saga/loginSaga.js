@@ -1,20 +1,23 @@
 import { FETCH_LOGIN, setLogin } from "../store/loginReducer"
 import {put, takeEvery, call} from "redux-saga/effects"
 
-const fetchLoginFromApi = async (url = '/api/auth/login', method = 'POST', body = {
-    email: 'q@mail.ru',
-    password: '111111'
-}, headers = {}) => {
+const fetchLoginFromApi = params => {
+    console.log(params)
+    let {url, method, form, headers} = params
+    if(form){
+        form = JSON.stringify(form)
+        headers['Content-Type'] = 'application/json'
+    }
     console.log(url)
     console.log(method)
-    console.log(body)
+    console.log(form)
     console.log(headers)
-    // debugger
-    return await fetch(url, {method, body, headers})
+    return fetch(url, {method, body: form, headers})
 }
 
-function* fetchLoginWorker() {
-    const data = yield call(fetchLoginFromApi)
+function* fetchLoginWorker(args) {
+    console.log(args)
+    const data = yield call(fetchLoginFromApi, args)
     // debugger
     console.log(data)
     const json = yield call(() => new Promise(res => res(data.json())))

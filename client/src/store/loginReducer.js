@@ -19,4 +19,12 @@ export default function loginReducer(state = defaultState, action) {
 }
 
 export const setLogin = payload => ({type: SET_LOGIN, payload})
-export const fetchLogin = () => ({type: FETCH_LOGIN})
+export const fetchLogin = (url, method, form, headers) => {
+    return {
+        type: FETCH_LOGIN,
+        url,
+        method,
+        form,
+        headers
+    }
+}
