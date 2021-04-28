@@ -4,17 +4,19 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 import { useHttp } from "../hooks/http.hook"
 import { useHistory } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 export const CreatePage = () => {
     const [link, setLink] = useState('')
     const {request} = useHttp()
-    const auth = useContext(AuthContext)
+    // const auth = useContext(AuthContext)
     const history = useHistory()
+    const token = useSelector(state => state.loginReducer.token)
 
     const pressHandler = async event => {
         if(event.key === 'Enter'){
             try {
-                const data = await request('/api/link/generate', 'POST', {from: link}, {Authorization: `Bearer ${auth.token}`})
+                const data = await request('/api/link/generate', 'POST', {from: link}, {Authorization: `Bearer ${token}`})
                 console.log(data)
                 history.push(`/detail/${data.link._id}`)
             } catch (e){}

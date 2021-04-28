@@ -6,12 +6,16 @@ import { useHttp } from "../hooks/http.hook"
 import { AuthContext } from "../context/AuthContext"
 import { Loader } from "../components/Loader"
 import { LinkCard } from "../components/LinkCard"
+import { useSelector } from "react-redux"
 
 export const DetailPage = () => {
-    const {token} = useContext(AuthContext)
+    // const {token} = useContext(AuthContext)
     const {request, loading} = useHttp()
     const [link, setLink] = useState(null)
+    const token = useSelector(state => state.loginReducer.token)
     const linkId = useParams().id
+
+    console.log(linkId)
 
     const getLink = useCallback( async () => {
         try {

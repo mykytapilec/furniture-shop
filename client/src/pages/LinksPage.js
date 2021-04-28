@@ -5,7 +5,8 @@ import { LinksList } from "../components/LinksList"
 import { Loader } from "../components/Loader"
 import { AuthContext } from "../context/AuthContext"
 import { useHttp } from "../hooks/http.hook"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { fetchLinks } from "../store/linksReducer"
 // import { fetchUser } from "../store/userReducer"
 // import { fetchLinkss } from '../store/actions'
 
@@ -13,23 +14,25 @@ export const LinksPage = () => {
     const dispatch = useDispatch()
     // debugger
     
-    const [links, setLinks] = useState([])
+    // const [links, setLinks] = useState([])
     const {loading, request} = useHttp()
-    const {token} = useContext(AuthContext)
+    // const {token} = useContext(AuthContext)
+    const token = useSelector(state => state.loginReducer.token)
+    const links = useSelector(state => state.linksReducer.links)
 
 // console.log(request)
     
 
-    const fetchLinks = useCallback(async () => {
-        try {
-            // const fetched = await request(`/api/link/`, 'GET', null, {
-            //     Authorization: `Bearer ${token}`
-            // })
-            // console.log(fetched)
-            // setLinks(fetched)
-            dispatch(fetchLinks())
-        } catch(e){}
-    }, [token, request])
+    // const fetchLinks = useCallback(async () => {
+    //     try {
+    //         // const fetched = await request(`/api/link/`, 'GET', null, {
+    //         //     Authorization: `Bearer ${token}`
+    //         // })
+    //         // console.log(fetched)
+    //         // setLinks(fetched)
+    //         dispatch(fetchLinks())
+    //     } catch(e){}
+    // }, [token, request])
 
     // const fetchLinks = () => ({type: FETCH_LINKS})
     
@@ -37,8 +40,8 @@ export const LinksPage = () => {
     useEffect(() => {
         // fetchLinks()
         // dispatch(fetchUser())
-        // dispatch(fetchLinks())
-    }, [fetchLinks])
+        dispatch(fetchLinks('/api/link/', 'GET', null, {Authorization: `Bearer ${token}`}))
+    }, [])
 
     if(loading){
         return <Loader />

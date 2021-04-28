@@ -8,14 +8,10 @@ export const useHttp = () => {
         setLoading(true)
         try {
             if(body){
-                console.log(body)
                 body = JSON.stringify(body)
                 headers['Content-Type'] = 'application/json'
             }
-            console.log(url)
-    console.log(method)
-    console.log(body)
-    console.log(headers)
+
             const responce = await fetch(url, {method, body, headers})
             const data = await responce.json()
 
