@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useHttp } from '../hooks/http.hook'
-import { useMessage } from '../hooks/message.hook'
+import React, { useState } from 'react'
 import {useDispatch} from "react-redux"
-import { fetchLogin, enter } from '../store/loginReducer'
+import { fetchLogin, enter, fetchRegin } from '../store/loginReducer'
 
 
-export const AuthPage = () => {
-    const {loading, error, request, clearError} = useHttp()
-    const message = useMessage()
+export const AuthPage: React.FC = () => {
     const dispatch = useDispatch()
 
     const [form, setForm] = useState({
@@ -15,23 +11,13 @@ export const AuthPage = () => {
         password: ''
     })
 
-    useEffect(() => {
-        message(error)
-        clearError()
-    }, [error, message, clearError])
-
-    useEffect(() => {
-        window.M.updateTextFields()
-    }, [])
-
-    const changeHandler = event => {
+    const changeHandler = (event: any) => {
         setForm({...form, [event.target.name]: event.target.value})
     }
 
-    const registaration = async () => {
+    const registaration = () => {
         try {
-            const data = await request('/api/auth/register', 'POST', {...form})
-            message(data.message)
+            dispatch(fetchRegin('/api/auth/register', 'POST', form, {}))
         } catch(e){}
     }
 
@@ -81,7 +67,7 @@ export const AuthPage = () => {
                         <button 
                             className="btn yellow darken-4" 
                             style={{marginRight:10}} 
-                            disabled={loading}
+                            // disabled={loading}
                             onClick={login}
                         >
                             log in
@@ -89,7 +75,7 @@ export const AuthPage = () => {
                         <button 
                             className="btn grey darken-2"
                             onClick={registaration}
-                            disabled={loading}
+                            // disabled={loading}
                         >
                             reg in
                         </button>

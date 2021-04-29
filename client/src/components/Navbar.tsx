@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom"
 import {useDispatch} from "react-redux"
 import { logout, enter } from "../store/loginReducer"
 
-const Navbar = ({isAuthenticated}) => {
+interface Props {
+    isAuthenticated: boolean
+}
+
+const Navbar: React.FC<Props> = ({isAuthenticated}) => {
     const dispatch = useDispatch()
 
     const logoutHandler = useCallback(() => {
@@ -12,7 +16,7 @@ const Navbar = ({isAuthenticated}) => {
             localStorage.removeItem('userData')
             dispatch(enter(true))
         } catch(e){}
-    }, [])
+    }, [dispatch])
 
     const enterHandler = () => {
         dispatch(enter(false))

@@ -1,7 +1,7 @@
 import {all} from "redux-saga/effects"
-import {linksWatcher} from "./linksSaga";
 import { loginWatcher } from "./loginSaga";
+import { reginWatcher } from "./reginSaga";
 
 export function* rootWatcher() {
-    yield all([linksWatcher(), loginWatcher()])
+    yield all([loginWatcher(), reginWatcher()])
 }
