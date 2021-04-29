@@ -16,7 +16,6 @@ export default function linksReducer(state = defaultState, action) {
 export const setLinks = payload => ({type: SET_LINKS, payload})
 
 export const fetchLinks = (url, method, body, headers) => {
-    console.log(11111, url, method, body, headers)
     return {
         type: FETCH_LINKS,
         url,
