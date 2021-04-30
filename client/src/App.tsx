@@ -1,8 +1,10 @@
 import 'materialize-css'
-import { useSelector } from 'react-redux'
+// import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { useRoutes } from './routes'
+// import { enter } from "./store/loginReducer"
 
 interface LoginState {
   token: string,
@@ -15,10 +17,25 @@ interface Store {
 }
 
 const App: React.FC = () => {
+  // const dispatch = useDispatch()
+  // const [token, setToken] = useState('')
+  // const data = JSON.parse(localStorage.getItem('userData') as string)
   let tokenFromStore = useSelector((state: Store) => state.loginReducer.token)
   const isEnter = useSelector((state: Store) => state.loginReducer.isEnter)
   const isAuthenticated: boolean = !!tokenFromStore
   const routes = useRoutes(isAuthenticated)
+
+  // useEffect(() => {
+  //   if(!!token){
+  //     dispatch(enter(false))
+  //   }
+
+  //   const data = JSON.parse(localStorage.getItem('userData') as string)
+
+  //   if(data){
+  //     setToken(data.token)
+  //   }
+  // }, [token, dispatch])
 
   return (
       <Router>

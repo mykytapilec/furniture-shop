@@ -1,12 +1,19 @@
-const { Router } = require('express')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const config = require('config')
-const {check, validationResult} = require('express-validator')
-const User = require('../models/User')
+import { Router, Request, Response } from 'express'
+import bcrypt from 'bcryptjs'
+import jwt from'jsonwebtoken'
+
+import config from 'config'
+import {check, validationResult} from 'express-validator'
+import User from '../models/User'
 const router = Router()
 
-const JWT_SECRET = config.get('jwtSecret')
+const JWT_SECRET: any = config.get('jwtSecret')
+
+interface User {
+    email: string,
+    password: string,
+    id: string,
+}
 
 // '/api/auth/register'
 router.post(
@@ -15,7 +22,7 @@ router.post(
         check('email', 'incorrect email').isEmail(),
         check('password', 'need more than 6 symbols').isLength({min: 6})
     ],
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         console.log(req.body)
         try{
             const errors = validationResult(req)
@@ -56,7 +63,7 @@ router.post(
         check('email', 'enter correct email').normalizeEmail().isEmail(),
         check('password', 'enter password').exists()
     ],
-    async (req, res) => {
+    async (req: Request, res: Response) => {
         try{
             const errors = validationResult(req)
 
@@ -69,7 +76,7 @@ router.post(
 
             const {email, password} = req.body
 
-            const user = await User.findOne({email})
+            const user: any = await User.findOne({email})
 
             if(!user){
                 return res.status(400).json({message: 'user is not find'})
@@ -98,4 +105,4 @@ router.post(
     }
 )
 
-module.exports = router
+export default router

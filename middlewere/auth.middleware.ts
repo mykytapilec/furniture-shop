@@ -1,8 +1,9 @@
-const jwt = require('jsonwebtoken')
-const config = require('config')
+import jwt from 'jsonwebtoken'
+import config from 'config'
+import { Request, Response, NextFunction } from 'express'
 
 
-module.exports = (req, res, next) => {
+module.exports = (req: any, res: Response, next: NextFunction) => {
     if(req.method === 'OPTIONS'){
         return next()
     }

@@ -1,21 +1,20 @@
-const express = require('express')
-const config = require('config')
-const mongoose = require('mongoose')
+import express, { json, Application } from 'express'
+import config from 'config'
+import mongoose from 'mongoose'
+import auth_routes from './routes/auth.routes'
 
-const http = require("https");
 
-const auth_routes = require('./routes/auth.routes')
-const link_routes = require('./routes/link.routes')
+const app: Application = express()
 
-const app = express()
+app.use(json())
 
-app.use(express.json({extended: true}))
-
+// app.use(json({extended: true}))
 app.use('/api/auth', auth_routes)
-app.use('/api/link', link_routes)
+// app.use('/api/link', link_routes)
 
-const PORT = config.get('port') || 5000
-const MONGO_URI = config.get('mongoUri')
+
+const PORT: number = config.get('port') || 5000
+const MONGO_URI: string = config.get('mongoUri')
 
 const start = async () => {
     try {

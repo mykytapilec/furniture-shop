@@ -1,4 +1,4 @@
-const {Schema, model, Types} = require('mongoose')
+import {Schema, model, Types} from 'mongoose'
 
 const schema = new Schema({
     email: {
@@ -16,4 +16,6 @@ const schema = new Schema({
     }]
 })
 
-module.exports = model('User', schema)
+
+
+export default model('User', schema)
