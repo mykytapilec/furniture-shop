@@ -1,10 +1,16 @@
+import {all} from "redux-saga/effects"
+import { loginWatcher } from "../modules/authorization/store/loginSaga"
+import { reginWatcher } from "../modules/authorization/store/reginSaga"
 import {applyMiddleware, combineReducers, createStore} from "redux"
-import loginReducer from "./loginReducer"
+import loginReducer from "../modules/authorization/store/loginReducer"
 import createSagaMiddleware from 'redux-saga'
-// import {countWatcher} from "../saga/countSaga"
-import {rootWatcher} from "../saga"
 import { composeWithDevTools } from "redux-devtools-extension"
 
+
+
+function* rootWatcher() {
+    yield all([loginWatcher(), reginWatcher()])
+}
 
 const sagaMiddleware = createSagaMiddleware()
 

@@ -1,5 +1,10 @@
-import { FETCH_LOGIN, setLogin } from "../store/loginReducer"
+import { FETCH_LOGIN } from "./keys"
 import {put, takeEvery, call} from "redux-saga/effects"
+import { setLogin } from "./actions"
+
+// interface Headres {
+//     Content-Type?: string,
+// }
 
 interface Params {
     url: string,

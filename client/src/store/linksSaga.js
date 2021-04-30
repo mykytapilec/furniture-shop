@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {put, takeEvery, call} from "redux-saga/effects"
 import { AuthContext } from "../context/AuthContext";
-import {FETCH_LINKS, FETCH_USER, setLinks, setUser} from "../store/linksReducer";
+import {FETCH_LINKS, FETCH_USER, setLinks, setUser} from "./linksReducer";
 
 // const auth = useContext(AuthContext)
 

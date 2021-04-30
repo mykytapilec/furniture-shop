@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import {useDispatch} from "react-redux"
-import { fetchLogin, enter, fetchRegin } from '../store/loginReducer'
+
+import { apiLogin, apiReg } from './constants'
+import { fetchLogin, enter, fetchRegin } from './store/actions'
 
 
 export const AuthPage: React.FC = () => {
@@ -17,14 +19,13 @@ export const AuthPage: React.FC = () => {
 
     const registaration = () => {
         try {
-            dispatch(fetchRegin('/api/auth/register', 'POST', form, {}))
+            dispatch(fetchRegin(apiReg, 'POST', form, {}))
         } catch(e){}
     }
 
     const login = () => {
-        
         try {
-            dispatch(fetchLogin('/api/auth/login', 'POST', form, {}))
+            dispatch(fetchLogin(apiLogin, 'POST', form, {}))
             dispatch(enter(false))
         } catch(e){}
     }

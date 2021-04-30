@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import { AuthPage } from './pages/AuthPage'
-import { BasketPage } from './pages/BasketPage'
+import { AuthPage } from './modules/authorization/AuthPage'
+import { BasketPage } from './modules/basket/BasketPage'
 
 interface LoginState {
     token: String,

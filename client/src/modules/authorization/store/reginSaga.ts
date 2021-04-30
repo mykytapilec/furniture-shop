@@ -1,5 +1,5 @@
-import { FETCH_REGIN } from "../store/loginReducer"
 import {takeEvery, call} from "redux-saga/effects"
+import { FETCH_REGIN } from "./keys"
 
 interface Params {
     url: string,
