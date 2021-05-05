@@ -1,4 +1,4 @@
-import { ENTER, LOGOUT, SET_LOGIN } from "./keys"
+import { ENTER, LOGOUT, SET_LOGIN } from './keys'
 
 interface LoginState {
     token: String,

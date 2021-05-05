@@ -1,6 +1,6 @@
-import { FETCH_LOGIN } from "./keys"
-import {put, takeEvery, call} from "redux-saga/effects"
-import { setLogin } from "./actions"
+import { FETCH_LOGIN } from './keys'
+import {put, takeEvery, call} from 'redux-saga/effects'
+import { setLogin } from './actions'
 
 // interface Headres {
 //     Content-Type?: string,
@@ -23,11 +23,7 @@ const fetchLoginFromApi = (params: Params) => {
 }
 
 
-function* fetchLoginWorker(args: any): Generator<
-    any,
-    any,
-    any
-    > {
+function* fetchLoginWorker(args: any): any {
         const data = yield call(fetchLoginFromApi, args)
         const json = yield call(() => new Promise(res => res(data.json())))
         yield put(setLogin(json))

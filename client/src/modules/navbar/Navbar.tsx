@@ -1,8 +1,8 @@
-import { useCallback } from "react"
-import { NavLink } from "react-router-dom"
-import {useDispatch} from "react-redux"
+import React, { useCallback } from 'react'
+import { NavLink } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 
-import { enter, logout } from "../authorization/store/actions"
+import { enter, logout } from '../authorization/store/actions'
 
 
 interface Props {

@@ -1,10 +1,10 @@
-import {all} from "redux-saga/effects"
-import { loginWatcher } from "../modules/authorization/store/loginSaga"
-import { reginWatcher } from "../modules/authorization/store/reginSaga"
-import {applyMiddleware, combineReducers, createStore} from "redux"
-import loginReducer from "../modules/authorization/store/loginReducer"
+import {all} from 'redux-saga/effects'
+import { loginWatcher } from '../modules/authorization/store/loginSaga'
+import { reginWatcher } from '../modules/authorization/store/reginSaga'
+import {applyMiddleware, combineReducers, createStore} from 'redux'
+import loginReducer from '../modules/authorization/store/loginReducer'
 import createSagaMiddleware from 'redux-saga'
-import { composeWithDevTools } from "redux-devtools-extension"
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 

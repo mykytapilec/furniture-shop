@@ -5,6 +5,9 @@ import jwt from'jsonwebtoken'
 import config from 'config'
 import {check, validationResult} from 'express-validator'
 import User from '../models/User'
+
+
+
 const router = Router()
 
 const JWT_SECRET: any = config.get('jwtSecret')

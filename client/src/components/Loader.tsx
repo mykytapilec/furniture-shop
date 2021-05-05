@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const Loader: React.FC = () => {
     return (
         <div style={{display: 'flex', justifyContent: 'center', paddingTop: '2rem'}}> 

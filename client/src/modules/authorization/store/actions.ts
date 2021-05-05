@@ -1,4 +1,4 @@
-import { ENTER, FETCH_LOGIN, FETCH_REGIN, LOGOUT, SET_LOGIN } from "./keys"
+import { ENTER, FETCH_LOGIN, FETCH_REGIN, LOGOUT, SET_LOGIN } from './keys'
 
 interface Form {
     email: String,

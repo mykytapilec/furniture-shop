@@ -1,5 +1,5 @@
-import {takeEvery, call} from "redux-saga/effects"
-import { FETCH_REGIN } from "./keys"
+import {takeEvery, call} from 'redux-saga/effects'
+import { FETCH_REGIN } from './keys'
 
 interface Params {
     url: string,
@@ -19,9 +19,7 @@ const fetchReginFromApi = (params: Params) => {
 }
 
 
-function* fetchReginWorker(args: any): Generator<
-    any
-    > {
+function* fetchReginWorker(args: any): any {
         yield call(fetchReginFromApi, args)
     }
 

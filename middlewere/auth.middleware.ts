@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import config from 'config'
-import { Request, Response, NextFunction } from 'express'
+import { Response, NextFunction } from 'express'
 
 
 module.exports = (req: any, res: Response, next: NextFunction) => {

@@ -1,7 +1,9 @@
+import React from 'react'
 import { useSelector } from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import { AuthPage } from './modules/authorization/AuthPage'
 import { BasketPage } from './modules/basket/BasketPage'
+
 
 interface LoginState {
     token: String,
@@ -19,7 +21,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
     if(isAuthenticated || isEnter){
         return (
             <Switch>
-                <Route path="/basket" exact>
+                <Route path="/basket">
                     <BasketPage />
                 </Route>
                 <Redirect to="/create"/>
@@ -29,7 +31,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
 
     return (
         <Switch>
-            <Route path="/" exact>
+            <Route path="/">
                 <AuthPage />
             </Route>
             <Redirect to="/"/>
