@@ -1,4 +1,5 @@
-import {takeEvery, call} from 'redux-saga/effects'
+import {takeEvery, call, put} from 'redux-saga/effects'
+import { error } from './actions'
 import { FETCH_REGIN } from './keys'
 
 interface Params {
@@ -20,7 +21,13 @@ const fetchReginFromApi = (params: Params) => {
 
 
 function* fetchReginWorker(args: any): any {
-        yield call(fetchReginFromApi, args)
+        const data = yield call(fetchReginFromApi, args)
+        const json = yield call(() => new Promise(res => res(data.json())))
+        // console.log(json)
+        if(json.message){
+            yield put(error(json))
+        }
+        
     }
 
 export function* reginWatcher() {

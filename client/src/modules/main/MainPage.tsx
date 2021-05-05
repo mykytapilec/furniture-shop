@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const BasketPage: React.FC = () => {
+export const MainPage: React.FC = () => {
     return (
         <div>
-            Basket
+            Main
         </div>
     )
 }

@@ -11,12 +11,19 @@ import 'materialize-css'
 interface LoginState {
   token: string,
   userId: string,
-  isEnter: boolean
+  isEnter: boolean,
+  message: string
 }
 
-interface Store {
-  loginReducer: LoginState
+declare global {
+  interface Store {
+    loginReducer: LoginState
+  }
 }
+
+// interface Store {
+//   loginReducer: LoginState
+// }
 
 const App: React.FC = () => {
   // const dispatch = useDispatch()

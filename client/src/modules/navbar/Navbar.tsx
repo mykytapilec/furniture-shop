@@ -29,6 +29,7 @@ const Navbar: React.FC<Props> = ({isAuthenticated}) => {
             <div className="nav-wrapper blue darken-1" style={{ padding: '0 2rem'}}>
             <span className="brand-logo">furniture shop</span>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
+                {isAuthenticated && <li><NavLink to="/main">main</NavLink></li>}
                 {isAuthenticated && <li><NavLink to="/basket">basket</NavLink></li>}
                 {isAuthenticated && <li><span onClick={logoutHandler}>exit</span></li>}
                 {isAuthenticated || <li><span onClick={enterHandler}>enter</span></li>}

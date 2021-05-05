@@ -1,9 +1,9 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import {Switch, Route, Redirect} from 'react-router-dom'
 import { AuthPage } from './modules/authorization/AuthPage'
 import { BasketPage } from './modules/basket/BasketPage'
-
+import React from 'react'
+import { MainPage } from './modules/main/MainPage'
 
 interface LoginState {
     token: String,
@@ -21,6 +21,9 @@ export const useRoutes = (isAuthenticated: boolean) => {
     if(isAuthenticated || isEnter){
         return (
             <Switch>
+                <Route path="/main">
+                    <MainPage />
+                </Route>
                 <Route path="/basket">
                     <BasketPage />
                 </Route>

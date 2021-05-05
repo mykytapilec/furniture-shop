@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import {useDispatch} from "react-redux"
+import React, { useState, useEffect } from 'react'
+import {useDispatch, useSelector} from "react-redux"
+import { useMessage } from '../../hooks/message.hook'
 
 import { apiLogin, apiReg } from './constants'
 import { fetchLogin, enter, fetchRegin } from './store/actions'
@@ -7,11 +8,25 @@ import { fetchLogin, enter, fetchRegin } from './store/actions'
 
 export const AuthPage: React.FC = () => {
     const dispatch = useDispatch()
-
+    const message = useMessage()
+    const err = useSelector((state: Store) => state.loginReducer.message)
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
+    useEffect(() => {
+        message(err)
+        // clearError()
+      }, [
+          err, 
+          message, 
+        //   clearError
+        ])
+    
+    useEffect(() => {
+        window.M.updateTextFields()
+    }, [])
 
     const changeHandler = (event: any) => {
         setForm({...form, [event.target.name]: event.target.value})

@@ -1,14 +1,18 @@
-import { ENTER, LOGOUT, SET_LOGIN } from './keys'
+import { ENTER, LOGOUT, SET_LOGIN, ERROR } from './keys'
 
 interface LoginState {
     token: String,
     userId: String,
-    isEnter: Boolean
+    isEnter: Boolean,
+    message: String,
 }
 
 interface Payload {
     token: String,
-    userId: String
+    userId: String,
+    errors: Array<any>,
+    message: String,
+
 }
 
 interface Form {
@@ -34,14 +38,9 @@ interface Action {
 const defaultState: LoginState = {
     token: '',
     userId: '',
+    message: '',
     isEnter: true
 }
-
-// export const SET_LOGIN: string = "SET_LOGIN"
-// export const FETCH_LOGIN: string = "FETCH_LOGIN"
-// export const FETCH_REGIN: string = "FETCH_REGIN"
-// export const LOGOUT: string = 'LOGOUT'
-// export const ENTER: string = 'ENTER'
 
 export default function loginReducer(state = defaultState, action: Action) {
     switch(action.type) {
@@ -56,6 +55,7 @@ export default function loginReducer(state = defaultState, action: Action) {
             
             return {
                 ...state, 
+                messeage: 'conected',
                 token: action.payload.token,
                 userId: action.payload.userId,
             }
@@ -69,30 +69,10 @@ export default function loginReducer(state = defaultState, action: Action) {
                 ...state, 
                 isEnter: action.flag
             }
+        case ERROR:
+            return {
+                message: action.payload.message,
+            }
     }
     return state
 }
-
-// export const setLogin = (payload: Payload)  => ({type: SET_LOGIN, payload})
-// export const enter = (flag: Boolean) => ({type: ENTER, flag})
-// export const logout = () => ({type: LOGOUT})
-
-// export const fetchLogin = (url: String, method: String, form: Form, headers: Headers) => {
-//     return {
-//         type: FETCH_LOGIN,
-//         url,
-//         method,
-//         form,
-//         headers
-//     }
-// }
-
-// export const fetchRegin = (url: String, method: String, form: Form, headers: Headers) => {
-//     return {
-//         type: FETCH_REGIN,
-//         url,
-//         method,
-//         form,
-//         headers
-//     }
-// }

@@ -1,4 +1,9 @@
-import { useCallback } from "react"
+import { useCallback } from 'react'
+
+
+declare global {
+    interface Window { M: any; }
+}
 
 export const useMessage = () => {
     return useCallback (text => {

@@ -1,4 +1,4 @@
-import { ENTER, FETCH_LOGIN, FETCH_REGIN, LOGOUT, SET_LOGIN } from './keys'
+import { ENTER, ERROR, FETCH_LOGIN, FETCH_REGIN, LOGOUT, SET_LOGIN } from './keys'
 
 interface Form {
     email: String,
@@ -16,8 +16,11 @@ interface Headers {
 }
 
 export const setLogin = (payload: Payload)  => ({type: SET_LOGIN, payload})
+// export const setRegin = (payload: Payload)  => ({type: SET_LOGIN, payload}) // ?????
 export const enter = (flag: Boolean) => ({type: ENTER, flag})
 export const logout = () => ({type: LOGOUT})
+export const error = (payload: Payload)  => ({type: ERROR, payload})
+
 
 export const fetchLogin = (url: String, method: String, form: Form, headers: Headers) => {
     return {
