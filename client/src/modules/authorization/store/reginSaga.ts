@@ -23,7 +23,6 @@ const fetchReginFromApi = (params: Params) => {
 function* fetchReginWorker(args: any): any {
         const data = yield call(fetchReginFromApi, args)
         const json = yield call(() => new Promise(res => res(data.json())))
-        // console.log(json)
         if(json.message){
             yield put(error(json))
         }

@@ -26,7 +26,6 @@ router.post(
         check('password', 'need more than 6 symbols').isLength({min: 6})
     ],
     async (req: Request, res: Response) => {
-        console.log(req.body)
         try{
             const errors = validationResult(req)
 

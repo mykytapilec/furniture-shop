@@ -31,33 +31,4 @@ const start = async () => {
 }
 
 
-
-// const options = {
-// 	"method": "GET",
-// 	"hostname": "getrit-furniture-store.p.rapidapi.comhttps",
-// 	"port": null,
-// 	"path": "//getrit.com/API/Token?Token=Demo",
-// 	"headers": {
-// 		"x-rapidapi-key": "11ad070107mshc4533af604c2b7dp18d7b2jsn0094eb1c94e2",
-// 		"x-rapidapi-host": "getrit-furniture-store.p.rapidapi.com",
-// 		"useQueryString": true
-// 	}
-// };
-
-// const req = http.request(options, function (res) {
-// 	const chunks = [];
-
-// 	res.on("data", function (chunk) {
-// 		chunks.push(chunk);
-// 	});
-
-// 	res.on("end", function () {
-// 		const body = Buffer.concat(chunks);
-// 		console.log(body.toString());
-// 	});
-// });
-
-// req.end();
-
-
   start()

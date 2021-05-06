@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {BrowserRouter as Router} from 'react-router-dom'
 
@@ -6,6 +6,7 @@ import Navbar from './modules/navbar/Navbar'
 import { useRoutes } from './routes'
 
 import 'materialize-css'
+
 
 
 interface LoginState {
@@ -26,42 +27,32 @@ declare global {
 // }
 
 const App: React.FC = () => {
-  // const dispatch = useDispatch()
-  // const [token, setToken] = useState('')
-  // const data = JSON.parse(localStorage.getItem('userData') as string)
-  let tokenFromStore = useSelector((state: Store) => state.loginReducer.token)
+  const [token, setToken] = useState('')
+  const [isAuthenticated, setAuthenticated] = useState(false)
   const isEnter = useSelector((state: Store) => state.loginReducer.isEnter)
-  const isAuthenticated: boolean = !!tokenFromStore
+  const tokenFromStore: string | boolean = useSelector((state: Store) => state.loginReducer.token)
   const routes = useRoutes(isAuthenticated)
 
-//   useEffect(() => {
-//     // if(!!token){
-//     //   dispatch(enter(false))
-//     // }
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('userData') as string)
+    const freshToken: boolean = !!tokenFromStore
 
-//     // const data = JSON.parse(localStorage.getItem('userData') as string)
+    if(data && !freshToken){
+      setToken(data.token)
+    } else if(freshToken || !data) {
+      setToken(tokenFromStore)
+    } else {
+      setToken('')
+    }
 
-//     // if(data){
-//     //   setToken(data.token)
-//     // }
-//     fetch("https://getrit-furniture-store.p.rapidapi.comhttps//getrit.com/API/Token?Token=Demo", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-key": "11ad070107mshc4533af604c2b7dp18d7b2jsn0094eb1c94e2",
-// 		"x-rapidapi-host": "getrit-furniture-store.p.rapidapi.com"
-// 	}
-// })
-// .then(response => {
-// 	console.log(response);
-// })
-// .catch(err => {
-// 	console.error(err);
-// });
-//   }, [])
+    setAuthenticated(!!token)
+  }, [token, tokenFromStore])
 
   return (
       <Router>
         { isAuthenticated || isEnter ? <Navbar isAuthenticated={isAuthenticated} /> : null}
+        {/* <Navbar isAuthenticated={isAuthenticated} />  */}
+        {/* { isAuthenticated || isEnter ? <Navbar isAuthenticated={isAuthenticated} /> : null} */}
         <div className="container">
           <h1>
             {routes}

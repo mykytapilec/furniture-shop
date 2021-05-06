@@ -1,4 +1,4 @@
-import { ENTER, LOGOUT, SET_LOGIN, ERROR } from './keys'
+import { ENTER, LOGOUT, SET_LOGIN, ERROR, CLEAR_MESSAGE } from './keys'
 
 interface LoginState {
     token: String,
@@ -52,16 +52,17 @@ export default function loginReducer(state = defaultState, action: Action) {
             localStorage.setItem('isEnter', JSON.stringify({
                 isEnter: state.isEnter
             }))
-            
+
             return {
                 ...state, 
-                messeage: 'conected',
+                message: 'conected',
                 token: action.payload.token,
                 userId: action.payload.userId,
             }
         case LOGOUT:
             return {
                 ...defaultState, 
+                message: 'logout',
                 isEnter:false
             }
         case ENTER:
@@ -71,7 +72,13 @@ export default function loginReducer(state = defaultState, action: Action) {
             }
         case ERROR:
             return {
+                ...state, 
                 message: action.payload.message,
+            }
+        case CLEAR_MESSAGE:
+            return {
+                ...state, 
+                message: ''
             }
     }
     return state

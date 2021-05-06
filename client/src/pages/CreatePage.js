@@ -17,7 +17,6 @@ export const CreatePage = () => {
         if(event.key === 'Enter'){
             try {
                 const data = await request('/api/link/generate', 'POST', {from: link}, {Authorization: `Bearer ${token}`})
-                console.log(data)
                 history.push(`/detail/${data.link._id}`)
             } catch (e){}
         }

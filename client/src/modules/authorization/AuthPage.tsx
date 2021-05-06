@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import { useMessage } from '../../hooks/message.hook'
 
 import { apiLogin, apiReg } from './constants'
-import { fetchLogin, enter, fetchRegin } from './store/actions'
+import { fetchLogin, enter, fetchRegin, clearMessage } from './store/actions'
 
 
 export const AuthPage: React.FC = () => {
@@ -17,7 +17,6 @@ export const AuthPage: React.FC = () => {
 
     useEffect(() => {
         message(err)
-        // clearError()
       }, [
           err, 
           message, 
@@ -26,6 +25,7 @@ export const AuthPage: React.FC = () => {
     
     useEffect(() => {
         window.M.updateTextFields()
+        // dispatch(clearMessage()) 
     }, [])
 
     const changeHandler = (event: any) => {
@@ -35,6 +35,7 @@ export const AuthPage: React.FC = () => {
     const registaration = () => {
         try {
             dispatch(fetchRegin(apiReg, 'POST', form, {}))
+            dispatch(clearMessage()) 
         } catch(e){}
     }
 
@@ -42,6 +43,7 @@ export const AuthPage: React.FC = () => {
         try {
             dispatch(fetchLogin(apiLogin, 'POST', form, {}))
             dispatch(enter(false))
+            dispatch(clearMessage()) 
         } catch(e){}
     }
 

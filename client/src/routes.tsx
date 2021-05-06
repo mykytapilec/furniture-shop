@@ -19,6 +19,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
     const isEnter = useSelector((state: Store) => state.loginReducer.isEnter)
 
     if(isAuthenticated || isEnter){
+    // if(isAuthenticated || !isEnter){
         return (
             <Switch>
                 <Route path="/main">
@@ -27,7 +28,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
                 <Route path="/basket">
                     <BasketPage />
                 </Route>
-                <Redirect to="/create"/>
+                <Redirect to="/"/>
             </Switch>
         )
     }
